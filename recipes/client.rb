@@ -33,9 +33,13 @@ elsif node['postfix']['multi_environment_relay']
   relayhost = results.map { |n| n['ipaddress'] }.first
 else
   results = search(:node, "#{query} AND chef_environment:#{node.chef_environment}")
+  $stderr.puts("!!! results: >#{results}<") #DEBUG#
   relayhost = results.map { |n| n['ipaddress'] }.first
+  $stderr.puts("!!! relayhost: >#{relayhost}<") #DEBUG#
 end
 
+$stderr.puts("!!! node['postfix']['main']['relayhost']: >#{node['postfix']['main']['relayhost']}<") #DEBUG#
 node.normal['postfix']['main']['relayhost'] = "[#{relayhost}]"
+$stderr.puts("!!! node['postfix']['main']['relayhost']: >#{node['postfix']['main']['relayhost']}<") #DEBUG#
 
 include_recipe 'postfix'

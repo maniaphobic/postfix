@@ -3,64 +3,15 @@ driver:
 
 provisioner:
   name: chef_zero
-  deprecations_as_errors: true
-
-verifier:
-  name: inspec
+  environments_path: test/fixtures/environments
+  nodes_path: test/fixtures/nodes
+  client_rb:
+    environment: default
 
 platforms:
-  - name: amazonlinux
-    driver_config:
-      box: mvbcoding/awslinux
-  - name: centos-6
-  - name: centos-7
-  - name: debian-7
-    run_list: apt::default
-  - name: debian-8
-    run_list: apt::default
-  - name: debian-9
-    run_list: apt::default
-  - name: fedora-26
-  - name: opensuse-leap-42
-  - name: ubuntu-14.04
-    run_list: apt::default
-  - name: ubuntu-16.04
-    run_list: apt::default
+  - name: centos-7.3
 
 suites:
-- name: default
-  run_list:
-  - recipe[postfix]
-
-- name: aliases
-  run_list:
-  - recipe[postfix::aliases]
-
-- name: client
-  run_list:
-  - recipe[postfix::client]
-
-- name: server
-  run_list:
-  - recipe[postfix::server]
-
-- name: sasl_auth
-  run_list:
-  - recipe[postfix::sasl_auth]
-  attributes:
-    postfix:
-      main:
-        relayhost: "localhost"
-        smtp_sasl_auth_enable: "yes"
-      sasl:
-        smtp_sasl_user_name: "kitchenuser"
-        smtp_sasl_passwd: "not-a-real-thing"
-
-- name: canonical
-  run_list:
-  - recipe[postfix]
-  attributes:
-    postfix:
-      recipient_canonical_map_entries:
-        john: john@doe.com
-        
+  - name: client
+    run_list:
+    - recipe[postfix::client]

@@ -1,0 +1,15 @@
+{
+  "name": "default",
+  "description": "Default environment",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "postfix": {
+      "relayhost_role": "smtp_relay"
+    }
+  },
+  "override_attributes": {
+  }
+}

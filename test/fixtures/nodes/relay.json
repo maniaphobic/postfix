@@ -1,0 +1,14 @@
+{
+  "name": "relay.smtp.local",
+  "chef_environment": "default",
+  "roles": [
+    "smtp_relay"
+  ],
+  "run_list": [
+    "role[smtp_relay]"
+  ]
+  ,
+  "normal": {
+    "ipaddress": "254.254.254.25"
+  }
+}
