@@ -6,10 +6,12 @@
   "json_class": "Chef::Environment",
   "chef_type": "environment",
   "default_attributes": {
-    "postfix": {
-      "relayhost_role": "smtp_relay"
-    }
   },
   "override_attributes": {
+    "postfix": {
+      "main": {
+	"relayhost": "relay.smtp.local"
+      }
+    }
   }
 }
