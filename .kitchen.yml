@@ -15,3 +15,5 @@ suites:
   - name: client
     run_list:
     - recipe[postfix::client]
+
+verifier: inspec
